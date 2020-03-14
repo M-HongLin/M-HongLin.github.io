@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>试试数学公式</title>
+      <link href="/2020/03/14/%E8%AF%95%E8%AF%95%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
+      <url>/2020/03/14/%E8%AF%95%E8%AF%95%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><script type="math/tex; mode=display">\begin{equation}\label{eq1}e=mc^2\end{equation}</script><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>著名的质能方程 $\eqref{eq1}$ 由爱因斯坦提出 …</p><h3 id="对于多行公式，在-equation-环境中，你可以使用-aligned-环境把公式分成多行，"><a href="#对于多行公式，在-equation-环境中，你可以使用-aligned-环境把公式分成多行，" class="headerlink" title="对于多行公式，在 equation 环境中，你可以使用 aligned 环境把公式分成多行，"></a>对于多行公式，在 equation 环境中，你可以使用 aligned 环境把公式分成多行，</h3><script type="math/tex; mode=display">\begin{equation}\label{eq2}\begin{aligned}a &= b + c \\  &= d + e + f + g \\  &= h + i\end{aligned}\end{equation}</script><h3 id="要对齐多个公式，我们需要使用-align-环境。align-环境中的每个公式都有自己的编号："><a href="#要对齐多个公式，我们需要使用-align-环境。align-环境中的每个公式都有自己的编号：" class="headerlink" title="要对齐多个公式，我们需要使用 align 环境。align 环境中的每个公式都有自己的编号："></a>要对齐多个公式，我们需要使用 align 环境。align 环境中的每个公式都有自己的编号：</h3><script type="math/tex; mode=display">\begin{align}a &= b + c \label{eq3} \\x &= yz \label{eq4}\\l &= m - n \label{eq5}\end{align}</script><h3 id="在-align-环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用-nonumber-命令即可。例如："><a href="#在-align-环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用-nonumber-命令即可。例如：" class="headerlink" title="在 align 环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用 \nonumber 命令即可。例如："></a>在 align 环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用 \nonumber 命令即可。例如：</h3><script type="math/tex; mode=display">\begin{align}-4 + 5x &= 2+y \nonumber  \\ w+2 &= -1+w \\ ab &= cb\end{align}</script><h3 id="有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用-tag-命令来实现，例如："><a href="#有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用-tag-命令来实现，例如：" class="headerlink" title="有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用 \tag{} 命令来实现，例如："></a>有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用 \tag{} 命令来实现，例如：</h3><script type="math/tex; mode=display">x+1\over\sqrt{1-x^2} \tag{i}\label{eq_tag}</script>]]></content>
+      
+      
+      <categories>
+          
+          <category> test </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> test </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>热物理专业英语</title>
       <link href="/2020/03/13/%E7%83%AD%E7%89%A9%E7%90%86%E4%B8%93%E4%B8%9A%E8%8B%B1%E8%AF%AD/"/>
       <url>/2020/03/13/%E7%83%AD%E7%89%A9%E7%90%86%E4%B8%93%E4%B8%9A%E8%8B%B1%E8%AF%AD/</url>
@@ -17,56 +42,6 @@
           
       </categories>
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>rss订阅</title>
-      <link href="/2020/03/12/rss%E8%AE%A2%E9%98%85/"/>
-      <url>/2020/03/12/rss%E8%AE%A2%E9%98%85/</url>
-      
-        <content type="html"><![CDATA[<p><em>rss，一种高度自主化的信息采集方式。虽然古老，却可以躲避算法的疯狂投喂。</em></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术改变生活 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 小技巧 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>git学习笔记</title>
-      <link href="/2020/03/10/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-      <url>/2020/03/10/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[<p><em>通过实际操作学习git的过程中，整理一些重点。更新中…</em></p><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul><li><p>创建文件夹，命名为learn-git</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir learn-git</span><br><span class="line">cd learn git</span><br></pre></td></tr></table></figure></li><li><p>初始化仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></li><li><p>查看仓库状态</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure></li><li><p>新建名为readme.md的文件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch readme.md</span><br></pre></td></tr></table></figure></li><li><p>将readme.md放入暂存区</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add readme.md</span><br></pre></td></tr></table></figure></li><li><p>保存仓库的历史记录</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git commit -m&quot;本次提交的信息&quot;</span><br><span class="line">git commit</span><br></pre></td></tr></table></figure><blockquote><p>直接 git commit, 编辑器会启动，可以在编辑器中详述提交信息。</p></blockquote></li><li><p>查看提交日志</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure><blockquote><p>什么人在什么时间做了提交或是合并，以及操作前后的差别。</p></blockquote><blockquote><p>git log 后面可以跟很多参数，用来查看以往提交的内容。</p></blockquote><blockquote><p><font color=blue>git log 只可以查询当前状态前的历史版本</font></p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --pretty&#x3D;short</span><br></pre></td></tr></table></figure><blockquote><p>只显示一行信息</p></blockquote></li><li><p>只显示指定目录，文件（readme.md）的提交信息。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log readme.md</span><br></pre></td></tr></table></figure></li><li><p>显示文件前后改动后的差别</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log -p readme.md</span><br></pre></td></tr></table></figure></li><li><p>查看前后更改的差别(当前工作树与暂存区的差别，没有暂时，显示工作树与最新提交之间的差别。)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure></li><li><p>查看工作树与最新提交的差别</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff head</span><br></pre></td></tr></table></figure><blockquote><p><font color=blue>注意每次提交前 git diff 看看差别后提交。提交后 git log 确认提交成功。</font></p></blockquote></li></ul><h2 id="分支操作不是很明白-版本回溯，分支操作"><a href="#分支操作不是很明白-版本回溯，分支操作" class="headerlink" title="分支操作不是很明白:版本回溯，分支操作"></a>分支操作<font color=red>不是很明白:版本回溯，分支操作</font></h2><p><em>对某一分支的修改，提交操作，其他分支不会受影响。可以在互不受影响的情况下，同时进行多个功能的开发。</em></p><p><font color=blue>对于特定功能的实现，在特定功能的分支中进性。进行完成后再与master合并。开发过程中发现了Bug，也可以在分支中修复。</font></p><ul><li>查看分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure></li><li>创建分支A<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch A</span><br></pre></td></tr></table></figure></li><li>切换到分支A<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git switch A</span><br></pre></td></tr></table></figure></li><li>合并分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git merge A #不会有合并提交的信息产生</span><br><span class="line">git merge --no-ff -m &quot;合并信息&quot; A #有合并信息</span><br></pre></td></tr></table></figure><font color=green>注意，f前面只有一个“-”，不然会出错。</font>  </li><li>以图表的形式查看分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --graph</span><br></pre></td></tr></table></figure></li></ul><h2 id="版本穿梭，更改提交的操作"><a href="#版本穿梭，更改提交的操作" class="headerlink" title="版本穿梭，更改提交的操作"></a>版本穿梭，更改提交的操作</h2><ul><li><p>回溯到之前某一版本</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 某一版本的哈希值</span><br></pre></td></tr></table></figure></li><li><p>查看仓库执行过的操作日。知道不对Git进行垃圾回收，可以以时间顺序，看到所有版本的哈希值。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure></li><li><p>解决冲突</p><p>返回原文件，手动处理</p></li><li><p>修改上一条提交信息</p><p><font color=red>用到的时候，再来整理吧。</font></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure></li><li><p>压缩历史（两次提交可以压缩为一个历史）</p></li></ul><h2 id="推送至远程仓库"><a href="#推送至远程仓库" class="headerlink" title="推送至远程仓库"></a>推送至远程仓库</h2><ul><li><p>添加远程仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:MHongLin&#x2F;learn-git.git</span><br></pre></td></tr></table></figure><blockquote><p>本次操作过后，git会自动将远程仓库的名称设为origin</p></blockquote></li><li><p>推送master分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure><blockquote><p>可能会connection timed out，再试一次就好了。</p></blockquote><blockquote><p>-u可以在推送的同时，将origin仓库的master分支设置为本地仓库当前分支的upstream，将来 git pull 的时候，本地仓库的这个分支可以直接从 origin 的 master 分支获取内容。</p></blockquote></li><li><p>推送master以外的分支</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git switch A</span><br><span class="line">git push -u origin A</span><br></pre></td></tr></table></figure></li><li><p>修改本地仓库所对应的远程仓库</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote set-url origin git@github.com:MHongLin&#x2F;learn-git.git</span><br></pre></td></tr></table></figure></li></ul><h2 id="从远程仓库获取"><a href="#从远程仓库获取" class="headerlink" title="从远程仓库获取"></a>从远程仓库获取</h2><ul><li>获取远程仓库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库的地址</span><br></pre></td></tr></table></figure></li><li>-a 参数，查看本地或者是远程分支的信息<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br></pre></td></tr></table></figure></li><li>获取远程仓库的分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b 本地仓库新建分支的名称 origin&#x2F;远程仓库的分支名</span><br></pre></td></tr></table></figure></li><li>将修改后的分支推送远程仓库<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push</span><br></pre></td></tr></table></figure></li><li>获取最新的远程仓库分支<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin 分支名</span><br></pre></td></tr></table></figure></li></ul><h2 id="混淆点"><a href="#混淆点" class="headerlink" title="混淆点"></a>混淆点</h2><ul><li>版本历史有两个主线<br>时间的顺序。擦掉重写后，分支图的顺序（有一部分没有了）。</li><li>退出编辑器 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">：wq</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 学习笔记 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> git </tag>
-            
-        </tags>
       
     </entry>
     
