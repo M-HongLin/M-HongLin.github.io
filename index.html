@@ -203,7 +203,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/14/%E8%AF%95%E8%AF%95%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">试试数学公式</a>
+            <a href="/2020/03/14/%E8%AF%95%E8%AF%95%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">如何渲染数学公式</a>
         </h1>
 
         <div class="post-meta">
@@ -214,7 +214,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-14 09:37:01 / 修改时间：10:04:35" itemprop="dateCreated datePublished" datetime="2020-03-14T09:37:01+08:00">2020-03-14</time>
+              <time title="创建时间：2020-03-14 09:37:01 / 修改时间：16:41:43" itemprop="dateCreated datePublished" datetime="2020-03-14T09:37:01+08:00">2020-03-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -222,7 +222,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/test/" itemprop="url" rel="index"><span itemprop="name">test</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
             </span>
 
@@ -232,7 +232,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>544</span>
+              <span>803</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -251,24 +251,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h3><script type="math/tex; mode=display">\begin{equation}\label{eq1}
+          <h2 id="1-渲染数学公式"><a href="#1-渲染数学公式" class="headerlink" title="1 渲染数学公式"></a>1 渲染数学公式</h2><p>这里网上有教程，怎样配置插件和修改主题配置文件。我使用的是2020年3月最新版本的next主题。参照了这个<a href="https://blog.csdn.net/wgshun616/article/details/81019687" target="_blank" rel="noopener">教程</a>。</p>
+<h2 id="2-实时预览的方法"><a href="#2-实时预览的方法" class="headerlink" title="2 实时预览的方法"></a>2 实时预览的方法</h2><p>Latex公式可以实时预览</p>
+<p>mathjax还没有找到可以在vscode中可以试试预览的方法…</p>
+<p>不过看了两个的语法手册，几乎都一样。</p>
+<p>但实在不想放弃Next主题有的公式编号和引用功能，还是用Mathjax,希望早点开发出实施预览功能。</p>
+<p>以后还得经常插数学公式。看到如此复杂的语法，只希望自己可以 上手快一点。</p>
+<h2 id="3-引用"><a href="#3-引用" class="headerlink" title="3 引用"></a>3 引用</h2><p>在文内引用：\eqref{eq1}</p>
+<script type="math/tex; mode=display">\begin{equation}\label{eq1}
 e=mc^2
-\end{equation}</script><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>著名的质能方程 $\eqref{eq1}$ 由爱因斯坦提出 …</p>
-<h3 id="对于多行公式，在-equation-环境中，你可以使用-aligned-环境把公式分成多行，"><a href="#对于多行公式，在-equation-环境中，你可以使用-aligned-环境把公式分成多行，" class="headerlink" title="对于多行公式，在 equation 环境中，你可以使用 aligned 环境把公式分成多行，"></a>对于多行公式，在 equation 环境中，你可以使用 aligned 环境把公式分成多行，</h3><script type="math/tex; mode=display">\begin{equation}\label{eq2}
+\end{equation}</script><p>著名的质能方程 $\eqref{eq1}$ 由爱因斯坦提出 …</p>
+<p>在 align 环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用 \nonumber 命令即可。例如：</p>
+<script type="math/tex; mode=display">\begin{align}
+-4 + 5x &= 2+y \nonumber  \\
+ w+2 &= -1+w \\
+ ab &= cb
+\end{align}</script><p>有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用 \tag{} 命令来实现，例如：</p>
+<script type="math/tex; mode=display">x+1\over\sqrt{1-x^2} \tag{i}\label{eq_tag}</script><h2 id="4-分行"><a href="#4-分行" class="headerlink" title="4 分行"></a>4 分行</h2><p>对于多行公式，在 equation 环境中，你可以使用 aligned 环境把公式分成多行：</p>
+<script type="math/tex; mode=display">\begin{equation}\label{eq2}
 \begin{aligned}
 a &= b + c \\
   &= d + e + f + g \\
   &= h + i
 \end{aligned}
-\end{equation}</script><h3 id="要对齐多个公式，我们需要使用-align-环境。align-环境中的每个公式都有自己的编号："><a href="#要对齐多个公式，我们需要使用-align-环境。align-环境中的每个公式都有自己的编号：" class="headerlink" title="要对齐多个公式，我们需要使用 align 环境。align 环境中的每个公式都有自己的编号："></a>要对齐多个公式，我们需要使用 align 环境。align 环境中的每个公式都有自己的编号：</h3><script type="math/tex; mode=display">\begin{align}
+\end{equation}</script><h2 id="5-对齐"><a href="#5-对齐" class="headerlink" title="5 对齐"></a>5 对齐</h2><p>要对齐多个公式，我们需要使用 align 环境。align 环境中的每个公式都有自己的编号：</p>
+<script type="math/tex; mode=display">\begin{align}
 a &= b + c \label{eq3} \\
 x &= yz \label{eq4}\\
 l &= m - n \label{eq5}
-\end{align}</script><h3 id="在-align-环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用-nonumber-命令即可。例如："><a href="#在-align-环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用-nonumber-命令即可。例如：" class="headerlink" title="在 align 环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用 \nonumber 命令即可。例如："></a>在 align 环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用 \nonumber 命令即可。例如：</h3><script type="math/tex; mode=display">\begin{align}
--4 + 5x &= 2+y \nonumber  \\
- w+2 &= -1+w \\
- ab &= cb
-\end{align}</script><h3 id="有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用-tag-命令来实现，例如："><a href="#有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用-tag-命令来实现，例如：" class="headerlink" title="有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用 \tag{} 命令来实现，例如："></a>有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用 \tag{} 命令来实现，例如：</h3><script type="math/tex; mode=display">x+1\over\sqrt{1-x^2} \tag{i}\label{eq_tag}</script>
+\end{align}</script><h2 id="6-语法"><a href="#6-语法" class="headerlink" title="6 语法"></a>6 语法</h2><p>网上找一找，打印下来照着看吧。</p>
+
       
     </div>
 
@@ -601,6 +613,61 @@ setInterval("createtime()",250);
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
