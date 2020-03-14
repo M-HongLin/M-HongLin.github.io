@@ -4,31 +4,6 @@
   
     
     <entry>
-      <title>如何渲染数学公式</title>
-      <link href="/2020/03/14/%E8%AF%95%E8%AF%95%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/"/>
-      <url>/2020/03/14/%E8%AF%95%E8%AF%95%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/</url>
-      
-        <content type="html"><![CDATA[<h2 id="1-渲染数学公式"><a href="#1-渲染数学公式" class="headerlink" title="1 渲染数学公式"></a>1 渲染数学公式</h2><p>这里网上有教程，怎样配置插件和修改主题配置文件。我使用的是2020年3月最新版本的next主题。参照了这个<a href="https://blog.csdn.net/wgshun616/article/details/81019687" target="_blank" rel="noopener">教程</a>。</p><h2 id="2-实时预览的方法"><a href="#2-实时预览的方法" class="headerlink" title="2 实时预览的方法"></a>2 实时预览的方法</h2><p>Latex公式可以实时预览</p><p>mathjax还没有找到可以在vscode中可以试试预览的方法…</p><p>不过看了两个的语法手册，几乎都一样。</p><p>但实在不想放弃Next主题有的公式编号和引用功能，还是用Mathjax,希望早点开发出实施预览功能。</p><p>以后还得经常插数学公式。看到如此复杂的语法，只希望自己可以 上手快一点。</p><h2 id="3-引用"><a href="#3-引用" class="headerlink" title="3 引用"></a>3 引用</h2><p>在文内引用：\eqref{eq1}</p><script type="math/tex; mode=display">\begin{equation}\label{eq1}e=mc^2\end{equation}</script><p>著名的质能方程 $\eqref{eq1}$ 由爱因斯坦提出 …</p><p>在 align 环境中，如果你不想给某个或某几个公式编号，那么在这些公式后面使用 \nonumber 命令即可。例如：</p><script type="math/tex; mode=display">\begin{align}-4 + 5x &= 2+y \nonumber  \\ w+2 &= -1+w \\ ab &= cb\end{align}</script><p>有时，你可能会希望采用更加奇特的方式来标记和引用你的公式，你可以通过使用 \tag{} 命令来实现，例如：</p><script type="math/tex; mode=display">x+1\over\sqrt{1-x^2} \tag{i}\label{eq_tag}</script><h2 id="4-分行"><a href="#4-分行" class="headerlink" title="4 分行"></a>4 分行</h2><p>对于多行公式，在 equation 环境中，你可以使用 aligned 环境把公式分成多行：</p><script type="math/tex; mode=display">\begin{equation}\label{eq2}\begin{aligned}a &= b + c \\  &= d + e + f + g \\  &= h + i\end{aligned}\end{equation}</script><h2 id="5-对齐"><a href="#5-对齐" class="headerlink" title="5 对齐"></a>5 对齐</h2><p>要对齐多个公式，我们需要使用 align 环境。align 环境中的每个公式都有自己的编号：</p><script type="math/tex; mode=display">\begin{align}a &= b + c \label{eq3} \\x &= yz \label{eq4}\\l &= m - n \label{eq5}\end{align}</script><h2 id="6-语法"><a href="#6-语法" class="headerlink" title="6 语法"></a>6 语法</h2><p>网上找一找，打印下来照着看吧。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 技术 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>热物理专业英语</title>
       <link href="/2020/03/13/%E7%83%AD%E7%89%A9%E7%90%86%E4%B8%93%E4%B8%9A%E8%8B%B1%E8%AF%AD/"/>
       <url>/2020/03/13/%E7%83%AD%E7%89%A9%E7%90%86%E4%B8%93%E4%B8%9A%E8%8B%B1%E8%AF%AD/</url>
