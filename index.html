@@ -189,6 +189,198 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://m-honglin.github.io/2020/04/01/hexo%E4%B8%AD%E6%B8%B2%E6%9F%93%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my-profile.jpg">
+      <meta itemprop="name" content="缪红林">
+      <meta itemprop="description" content="中二病晚期">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="红林的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/01/hexo%E4%B8%AD%E6%B8%B2%E6%9F%93%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/" class="post-title-link" itemprop="url">hexo中渲染数学公式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-01 09:49:32 / 修改时间：16:59:05" itemprop="dateCreated datePublished" datetime="2020-04-01T09:49:32+08:00">2020-04-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%9E%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">实用</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>512</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>更新中…</em><br><em>虽然很多东西都不是可以简单绝对地衡量。但是数学可以让你将周围的世界粗糙地量化一下，作为自己做事的参考。当然，倘若加上计算机的力量，就真的很厉害了。</em><br><em>好想整理出排版好看的数学公式。打算试试</em><br><em>其实我好希望数学符号可以再统一优雅一点。</em></p>
+<h2 id="刚开始的疑惑"><a href="#刚开始的疑惑" class="headerlink" title="刚开始的疑惑"></a>刚开始的疑惑</h2><ul>
+<li><p>hexo里面是用用mathjax整理公式，那么和Latex有什么关系？</p>
+<blockquote>
+<p>MathJax是一款运行在浏览器中的开源数学符号渲染引擎。MathJax可以解析Latex的标记语言</p>
+</blockquote>
+</li>
+<li><p>有可以一边输入一边渲染的编辑器吗？</p>
+<blockquote>
+<p>Vscode里面有渲染Latex的插件，可以即时渲染</p>
+</blockquote>
+</li>
+<li><p>它们又是怎样和Markdown扯上关系</p>
+<blockquote>
+<p>在 Markdown 中可以直接插入 LaTeX 数学式</p>
+</blockquote>
+</li>
+<li><p>如何在hexo搭建的博客中，优雅地整理公式</p>
+<blockquote>
+<p>就在Markdown中直接用Latex的语法写公式。配置一下主题文件，换个渲染引擎就可以了。参考<a href="https://abelsu7.top/2018/10/29/hexo-mathjax/" target="_blank" rel="noopener">教程</a></p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>可以用来排版论文吗？</li>
+</ul>
+<h2 id="Latex标记语言"><a href="#Latex标记语言" class="headerlink" title="Latex标记语言"></a>Latex标记语言</h2><p>Latex是标记语言。最常用到的主要有文本模式和数学模式这两种模式。数学模式又可分为行内公式和行间公式两种形式。<br>具体语法可以参考<a href="https://www.cnblogs.com/nowgood/p/Latexstart.html" target="_blank" rel="noopener">MarkDown 中使用 LaTeX 数学式</a></p>
+<h2 id="什么编辑器比较好用呢"><a href="#什么编辑器比较好用呢" class="headerlink" title="什么编辑器比较好用呢"></a>什么编辑器比较好用呢</h2><h2 id="试试"><a href="#试试" class="headerlink" title="试试"></a>试试</h2><script type="math/tex; mode=display">\sum_{i=1}^n a_i=0</script><p>试试行间的公式： $x_i$ </p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://m-honglin.github.io/2020/03/23/%E5%BE%AE%E7%A7%AF%E5%88%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my-profile.jpg">
+      <meta itemprop="name" content="缪红林">
+      <meta itemprop="description" content="中二病晚期">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="红林的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/23/%E5%BE%AE%E7%A7%AF%E5%88%86/" class="post-title-link" itemprop="url">微积分</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-23 17:30:36 / 修改时间：20:12:10" itemprop="dateCreated datePublished" datetime="2020-03-23T17:30:36+08:00">2020-03-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>147</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><em>对于一个热物理的学生来说，微积分是很重要的基础。我是学过微积分的，不过之前存粹是为了考试学。现在为了更好的理解热物理中的各种微分方程与积分方程，我再次整理一下微积分。这次不是为了考试，所以省略了各种严格证明。</em></p>
+<h1 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h1><h2 id="1-重要的概念"><a href="#1-重要的概念" class="headerlink" title="1 重要的概念"></a>1 重要的概念</h2><p>极限 收敛 无穷大 无穷小 导数 微分 积分 </p>
+<h3 id="1-1-收敛"><a href="#1-1-收敛" class="headerlink" title="1-1 收敛"></a>1-1 收敛</h3><h2 id="2-各种积分"><a href="#2-各种积分" class="headerlink" title="2 各种积分"></a>2 各种积分</h2><h2 id="3-微分方程"><a href="#3-微分方程" class="headerlink" title="3 微分方程"></a>3 微分方程</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://m-honglin.github.io/2020/03/13/%E7%83%AD%E7%89%A9%E7%90%86%E4%B8%93%E4%B8%9A%E8%8B%B1%E8%AF%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -338,15 +530,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -391,7 +589,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">0k</span>
+    <span title="站点总字数">1k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
@@ -499,6 +697,59 @@ setInterval("createtime()",250);
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
