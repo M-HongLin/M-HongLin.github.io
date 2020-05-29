@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"m-honglin.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="想要明白一些系统管理知识，掌握shell脚本知识是最基本的。 1 bash介绍Bash是一个shell。shell是一个命令解释器，是介于操作系统内核与用户之间的一个绝缘层。准确地说，它也是能力很强的计算机语言，被称为解释性语言或脚本语言。它可以通过将系统调用、公共程序、工具和编译过的二进制程序粘合在一起来建立应用。这是大多数脚本语言的共同特征，所以有时候脚本语言又叫做胶水语言。所有的UNIX命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bash高级脚本语言">
+<meta property="og:url" content="http://m-honglin.github.io/2020/04/10/bash%E9%AB%98%E7%BA%A7%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/index.html">
+<meta property="og:site_name" content="红林的博客">
+<meta property="og:description" content="想要明白一些系统管理知识，掌握shell脚本知识是最基本的。 1 bash介绍Bash是一个shell。shell是一个命令解释器，是介于操作系统内核与用户之间的一个绝缘层。准确地说，它也是能力很强的计算机语言，被称为解释性语言或脚本语言。它可以通过将系统调用、公共程序、工具和编译过的二进制程序粘合在一起来建立应用。这是大多数脚本语言的共同特征，所以有时候脚本语言又叫做胶水语言。所有的UNIX命令">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-10T13:49:26.000Z">
+<meta property="article:modified_time" content="2020-04-16T01:34:56.000Z">
+<meta property="article:author" content="缪红林">
+<meta property="article:tag" content="bash">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://m-honglin.github.io/2020/04/10/bash%E9%AB%98%E7%BA%A7%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>bash高级脚本语言 | 红林的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">红林的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">很高兴遇见你！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://m-honglin.github.io/2020/04/10/bash%E9%AB%98%E7%BA%A7%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my-profile.jpg">
+      <meta itemprop="name" content="缪红林">
+      <meta itemprop="description" content="中二病晚期">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="红林的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          bash高级脚本语言
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-10 21:49:26" itemprop="dateCreated datePublished" datetime="2020-04-10T21:49:26+08:00">2020-04-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-16 09:34:56" itemprop="dateModified" datetime="2020-04-16T09:34:56+08:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">CS学习笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em>想要明白一些系统管理知识，掌握shell脚本知识是最基本的。</em></p>
+<h1 id="1-bash介绍"><a href="#1-bash介绍" class="headerlink" title="1 bash介绍"></a>1 bash介绍</h1><p>Bash是一个shell。shell是一个命令解释器，是介于操作系统内核与用户之间的一个绝缘层。准确地说，它也是能力很强的计算机语言，被称为解释性语言或脚本语言。它可以通过将系统调用、公共程序、工具和编译过的二进制程序粘合在一起来建立应用。这是大多数脚本语言的共同特征，所以有时候脚本语言又叫做胶水语言。所有的UNIX命令和工具再加上公共程序，对于shell脚本来说，都是可调用的。Shell脚本对于管理系统任务和其它的重复工作的进程来说，表现的非常好，根本不需要那些华而不实的成熟紧凑的编译型程序语言。</p>
+<p>对于任何想适当精通一些系统管理知识的人来说，掌握shell脚本知识都是最基本的</p>
+<h2 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h2><ul>
+<li>一个hello的程序<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ vim hello.sh</span><br><span class="line">#!&#x2F;bin&#x2F;bash  # ‘#！’说明文件类型，是一个bash程序，由 &#x2F;bin 目录下的 bash 程序来解释执行。</span><br><span class="line"># This is a comment # 这里是注释</span><br><span class="line">echo Hello World # 把echo后面的字符串输出到标准输出中去</span><br></pre></td></tr></table></figure></li>
+<li>运行Bash脚本的方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sh hello.sh  # 使用shell来执行</span><br><span class="line">$ bash hello.sh  # 使用bash来执行</span><br><span class="line">$ . .&#x2F;hello.sh  # 使用.来执行</span><br><span class="line">$ source hello.sh  # 使用source来执行</span><br><span class="line"># 还可以赋予脚本所有者执行权限，允许该用户执行该脚本</span><br><span class="line">$ chmod u+rx hello.sh</span><br><span class="line">$  .&#x2F;hello.sh</span><br></pre></td></tr></table></figure></li>
+<li>使用source来执行:在当前目录下生成一个my.txt。保存hello world<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line">echo &quot;Hello World&quot; &gt; my.txt</span><br></pre></td></tr></table></figure></li>
+<li>使用脚本清除/var/log下的log文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cat &#x2F;var&#x2F;log&#x2F;wtmp  # 看一看&#x2F;var&#x2F;log&#x2F;wtmp里面有啥东西</span><br><span class="line">$ vim cleanlogs.sh  # 写一个脚本把里面清空，但是保留文件</span><br></pre></td></tr></table></figure>
+写一个文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line"></span><br><span class="line"># 初始化一个变量</span><br><span class="line">LOG_DIR&#x3D;&#x2F;var&#x2F;log</span><br><span class="line">cd $LOG_DIR</span><br><span class="line">cat &#x2F;dev&#x2F;null &gt; wtmp</span><br><span class="line">echo &quot;Logs cleaned up.&quot;</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+因为/dev/null ，里面是空的，重定向到 /var/log/wtmp 文件后，就清空了 wtmp 文件的内容。<h1 id="2-bash特殊字符"><a href="#2-bash特殊字符" class="headerlink" title="2 bash特殊字符"></a>2 bash特殊字符</h1><h2 id="注释："><a href="#注释：" class="headerlink" title="注释："></a>注释：</h2><h2 id="使用分号"><a href="#使用分号" class="headerlink" title="使用分号"></a>使用分号</h2>在同一行写上两个或以上的命令：；<h2 id="双分号"><a href="#双分号" class="headerlink" title="双分号"></a>双分号</h2>可以终止case选项:;;<h2 id="点号"><a href="#点号" class="headerlink" title="点号(.)"></a>点号(.)</h2>等价于source命令。bash 中的 source 命令用于在当前 bash 环境下读取并执行 FileName.sh 中的命令。<h2 id="双引号-“"><a href="#双引号-“" class="headerlink" title="双引号(“)"></a>双引号(“)</h2>“STRING” 将会阻止（解释）STRING中大部分特殊的字符。后面的实验会详细说明。<h2 id="单引号-‘"><a href="#单引号-‘" class="headerlink" title="单引号(‘)"></a>单引号(‘)</h2>‘STRING’ 将会阻止STRING中所有特殊字符的解释，这是一种比使用”更强烈的形式。后面的实验会详细说明。<h2 id="斜线"><a href="#斜线" class="headerlink" title="斜线()"></a>斜线()</h2>文件名路径分隔符。分隔文件名不同的部分（如/home/bozo/projects/Makefile）。也可以用来作为除法算术操作符。注意在linux中表示路径的时候，许多个/跟一个/是一样的。<h2 id="反斜线"><a href="#反斜线" class="headerlink" title="反斜线()"></a>反斜线()</h2>\ 通常用来转义双引号（”）和单引号（’），这样双引号和单引号就不会被解释成特殊含义了。\n 表示新的一行;\r 表示回车;\t 表示水平制表符;\v 表示垂直制表符;\b 表示后退符;\a 表示”alert”(蜂鸣或者闪烁);\0xx 转换为八进制的ASCII码, 等价于0xx<h2 id="反引号"><a href="#反引号" class="headerlink" title="反引号(`)"></a>反引号(`)</h2>反引号中的命令会优先执行。<h2 id="冒号"><a href="#冒号" class="headerlink" title="冒号(:)"></a>冒号(:)</h2></li>
+<li>空命令，啥也不做或是相当于true。</li>
+<li>变量扩展，子串替换。在与&gt;重定向操作符结合使用时，将会把一个文件清空。在与&gt;&gt;重定向操作符结合使用时，将不会对预先存在的目标文件 (: &gt;&gt; target_file)产生任何影响。还用来在 /etc/passwd 和 $PATH 变量中做分隔符。<h2 id="问号"><a href="#问号" class="headerlink" title="问号(?)"></a>问号(?)</h2>在一个双括号结构中，? 就是C语言的三元操作符。<h2 id="美元符号"><a href="#美元符号" class="headerlink" title="美元符号($)"></a>美元符号($)</h2>变量替换<h2 id="小括号"><a href="#小括号" class="headerlink" title="小括号()"></a>小括号()</h2></li>
+<li>命令组。在括号中的命令列表，将会作为一个子 shell 来运行。在括号中的变量，由于是在子shell中，所以对于脚本剩下的部分是不可用的。父进程，也就是脚本本身，将不能够读取在子进程中创建的变量，也就是在子shell 中创建的变量。</li>
+<li>创建数组<h2 id="大括号"><a href="#大括号" class="headerlink" title="大括号{}"></a>大括号{}</h2></li>
+<li>文件名扩展</li>
+<li>代码块。代码块，又被称为内部组，这个结构事实上创建了一个匿名函数（一个没有名字的函数）。然而，与“标准”函数不同的是，在其中声明的变量，对于脚本其他部分的代码来说还是可见的。<h2 id="中括号"><a href="#中括号" class="headerlink" title="中括号[]"></a>中括号[]</h2></li>
+<li>条件测试表达式放在[ ]中。</li>
+<li>数组元素.在一个array结构的上下文中，中括号用来引用数组中每个元素的编号。<h2 id="尖括号-lt-和-gt"><a href="#尖括号-lt-和-gt" class="headerlink" title="尖括号:&lt; 和 &gt;"></a>尖括号:&lt; 和 &gt;</h2></li>
+<li>重定向<br>test.sh &gt; filename：重定向test.sh的输出到文件 filename 中。如果 filename 存在的话，那么将会被覆盖。</li>
+</ul>
+<p>test.sh &amp;&gt; filename：重定向 test.sh 的 stdout（标准输出）和 stderr（标准错误）到 filename 中。</p>
+<p>test.sh &gt;&amp;2：重定向 test.sh 的 stdout 到 stderr 中。</p>
+<p>test.sh &gt;&gt; filename：把 test.sh 的输出追加到文件 filename 中。如果filename 不存在的话，将会被创建。</p>
+<h2 id="竖线"><a href="#竖线" class="headerlink" title="竖线(|)"></a>竖线(|)</h2><ul>
+<li>管道。分析前边命令的输出，并将输出作为后边命令的输入。这是一种产生命令链的好方法。<h2 id="破折号"><a href="#破折号" class="headerlink" title="破折号(-)"></a>破折号(-)</h2></li>
+<li>选项，前缀。在所有的命令内如果想使用选项参数的话,前边都要加上“-”。</li>
+<li>用于重定向stdin或stdout<h2 id="波浪号"><a href="#波浪号" class="headerlink" title="波浪号(~)"></a>波浪号(~)</h2>表示 home 目录。</li>
+</ul>
+<h1 id="3-变量和参数"><a href="#3-变量和参数" class="headerlink" title="3 变量和参数"></a>3 变量和参数</h1><h2 id="变量的定义"><a href="#变量的定义" class="headerlink" title="变量的定义"></a>变量的定义</h2><ul>
+<li>如果 variable 是一个变量的名字，那么 $variable 就是引用这个变量的值，即这变量所包含的数据。</li>
+<li>变量名和等号之间不能有空格。同时，变量名的命名须遵循规则<h2 id="只读变量"><a href="#只读变量" class="headerlink" title="只读变量"></a>只读变量</h2>使用 readonly 命令可以将变量定义为只读变量，只读变量的值不能被改变。<h2 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h2></li>
+<li>局部变量<br>这种变量只有在代码块或者函数中才可见。</li>
+<li>环境变量<br>这种变量将影响用户接口和 shell 的行为。在通常情况下，每个进程都有自己的“环境”，这个环境是由一组变量组成的，这些变量中存有进程可能需要引用的信息。在这种情况下，shell 与一个一般的进程没什么区别。</li>
+<li>位置参数</li>
+</ul>
+<h1 id="4-基本运算符"><a href="#4-基本运算符" class="headerlink" title="4 基本运算符"></a>4 基本运算符</h1><h2 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h2><ul>
+<li>加+,减-,乘*,除/,取余%,赋值=,等于==,不等于!=</li>
+<li>原生bash不支持简单的数学运算，但是可以通过其他命令来实现，例如 awk 和 expr，expr 最常用。</li>
+<li>expr 是一款表达式计算工具，使用它能完成表达式的求值操作。</li>
+<li>表达式和运算符之间要有空格</li>
+<li>expr 只能用于整数计算，可以使用 bc 或者 awk 进行浮点数运算。</li>
+<li>条件表达式要放在方括号之间，并且要有空格</li>
+<li>乘号（*）前边必须加反斜杠（)才能实现乘法运算<h2 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h2></li>
+<li>相等-eq,不等-ne,大于-gt,小于-lt,大于等于-ge,小于等于-le<h2 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h2>&amp;&amp;and,||or<h2 id="字符串运算符"><a href="#字符串运算符" class="headerlink" title="字符串运算符"></a>字符串运算符</h2></li>
+<li>字符串相等：=</li>
+<li>字符串不等：！=</li>
+<li>字符串长度为零：-z</li>
+<li>字符串长度不为零：-n</li>
+<li>字符串为空：str<h2 id="文件测试运算符"><a href="#文件测试运算符" class="headerlink" title="文件测试运算符"></a>文件测试运算符</h2>测试文件的大小，时间，权限，属性<h1 id="5-流程控制"><a href="#5-流程控制" class="headerlink" title="5 流程控制"></a>5 流程控制</h1><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2>每个高级语言都有这些东西，都一样，不想写了。<h1 id="6-函数"><a href="#6-函数" class="headerlink" title="6 函数"></a>6 函数</h1><h2 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function funname()</span><br><span class="line">&#123;</span><br><span class="line">    action;</span><br><span class="line">    [return int;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>喜欢简单粗暴地支持一下！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="缪红林 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="缪红林 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>缪红林
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://m-honglin.github.io/2020/04/10/bash%E9%AB%98%E7%BA%A7%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80/" title="bash高级脚本语言">http://m-honglin.github.io/2020/04/10/bash高级脚本语言/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa%E8%AE%BE%E7%BD%AE%E7%89%88%E6%9D%83/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA设置版权</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/bash/" rel="tag"># bash</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/10/consumer-behaviour/" rel="prev" title="consumer-behaviour">
+      <i class="fa fa-chevron-left"></i> consumer-behaviour
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/16/%E5%BB%BA%E6%9E%84%E4%B8%BB%E4%B9%89/" rel="next" title="建构主义">
+      建构主义 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-bash介绍"><span class="nav-number">1.</span> <span class="nav-text">1 bash介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hello-world"><span class="nav-number">1.1.</span> <span class="nav-text">hello world</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-bash特殊字符"><span class="nav-number">2.</span> <span class="nav-text">2 bash特殊字符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注释："><span class="nav-number">2.1.</span> <span class="nav-text">注释：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用分号"><span class="nav-number">2.2.</span> <span class="nav-text">使用分号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双分号"><span class="nav-number">2.3.</span> <span class="nav-text">双分号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#点号"><span class="nav-number">2.4.</span> <span class="nav-text">点号(.)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双引号-“"><span class="nav-number">2.5.</span> <span class="nav-text">双引号(“)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单引号-‘"><span class="nav-number">2.6.</span> <span class="nav-text">单引号(‘)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#斜线"><span class="nav-number">2.7.</span> <span class="nav-text">斜线()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反斜线"><span class="nav-number">2.8.</span> <span class="nav-text">反斜线()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反引号"><span class="nav-number">2.9.</span> <span class="nav-text">反引号(&#96;)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒号"><span class="nav-number">2.10.</span> <span class="nav-text">冒号(:)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问号"><span class="nav-number">2.11.</span> <span class="nav-text">问号(?)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#美元符号"><span class="nav-number">2.12.</span> <span class="nav-text">美元符号($)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小括号"><span class="nav-number">2.13.</span> <span class="nav-text">小括号()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大括号"><span class="nav-number">2.14.</span> <span class="nav-text">大括号{}</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中括号"><span class="nav-number">2.15.</span> <span class="nav-text">中括号[]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尖括号-lt-和-gt"><span class="nav-number">2.16.</span> <span class="nav-text">尖括号:&lt; 和 &gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#竖线"><span class="nav-number">2.17.</span> <span class="nav-text">竖线(|)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#破折号"><span class="nav-number">2.18.</span> <span class="nav-text">破折号(-)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#波浪号"><span class="nav-number">2.19.</span> <span class="nav-text">波浪号(~)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-变量和参数"><span class="nav-number">3.</span> <span class="nav-text">3 变量和参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的定义"><span class="nav-number">3.1.</span> <span class="nav-text">变量的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#只读变量"><span class="nav-number">3.2.</span> <span class="nav-text">只读变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊变量"><span class="nav-number">3.3.</span> <span class="nav-text">特殊变量</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-基本运算符"><span class="nav-number">4.</span> <span class="nav-text">4 基本运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算数运算符"><span class="nav-number">4.1.</span> <span class="nav-text">算数运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系运算符"><span class="nav-number">4.2.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">4.3.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串运算符"><span class="nav-number">4.4.</span> <span class="nav-text">字符串运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件测试运算符"><span class="nav-number">4.5.</span> <span class="nav-text">文件测试运算符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-流程控制"><span class="nav-number">5.</span> <span class="nav-text">5 流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#条件"><span class="nav-number">5.1.</span> <span class="nav-text">条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#循环"><span class="nav-number">5.2.</span> <span class="nav-text">循环</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-函数"><span class="nav-number">6.</span> <span class="nav-text">6 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数定义"><span class="nav-number">6.1.</span> <span class="nav-text">函数定义</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="缪红林"
+      src="/images/my-profile.jpg">
+  <p class="site-author-name" itemprop="name">缪红林</p>
+  <div class="site-description" itemprop="description">中二病晚期</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/M-HongLin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;M-HongLin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:21927003@zju.edu.cn" title="E-Mail → mailto:21927003@zju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">缪红林</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">55k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">50 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/14/2020 07:014:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '2bc56a26af7713b55639',
+      clientSecret: '4c6b9850b91f9ca4a534dfecc94075cc98d07691',
+      repo        : 'blog-comment',
+      owner       : 'M-HongLin',
+      admin       : ['M-HongLin'],
+      id          : '8207691644918ccd32cd3e1dbaf073f7',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

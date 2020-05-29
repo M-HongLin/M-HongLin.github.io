@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"m-honglin.github.io","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="博客维护过程中的问题 图床的问题 发现问题很难，但是到处都有答案。就看你会不会提问，会不会在一个死胡同里被套住。就像我一直纠结在七牛云里（搜索引擎搜出来都是七牛云）。用了7牛云出现各种问题：一个月后域名回收；要网站备案，然后去买域名；买完域名发现服务器在国外不用备案。好在我太穷了，买不起服务器。再去找其他的图床。结果困扰我一周的问题，半天就解决了。果然是穷则变，变则通。感谢我一个月1200的工资。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo博客维护日志">
+<meta property="og:url" content="http://m-honglin.github.io/2020/04/06/hexo%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="红林的博客">
+<meta property="og:description" content="博客维护过程中的问题 图床的问题 发现问题很难，但是到处都有答案。就看你会不会提问，会不会在一个死胡同里被套住。就像我一直纠结在七牛云里（搜索引擎搜出来都是七牛云）。用了7牛云出现各种问题：一个月后域名回收；要网站备案，然后去买域名；买完域名发现服务器在国外不用备案。好在我太穷了，买不起服务器。再去找其他的图床。结果困扰我一周的问题，半天就解决了。果然是穷则变，变则通。感谢我一个月1200的工资。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-06T08:55:49.000Z">
+<meta property="article:modified_time" content="2020-05-01T09:56:40.000Z">
+<meta property="article:author" content="缪红林">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://m-honglin.github.io/2020/04/06/hexo%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4%E6%97%A5%E5%BF%97/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>hexo博客维护日志 | 红林的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">红林的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">很高兴遇见你！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://m-honglin.github.io/2020/04/06/hexo%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4%E6%97%A5%E5%BF%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/my-profile.jpg">
+      <meta itemprop="name" content="缪红林">
+      <meta itemprop="description" content="中二病晚期">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="红林的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo博客维护日志
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-06 16:55:49" itemprop="dateCreated datePublished" datetime="2020-04-06T16:55:49+08:00">2020-04-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-01 17:56:40" itemprop="dateModified" datetime="2020-05-01T17:56:40+08:00">2020-05-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%99%BD%E5%99%AA%E9%9F%B3/" itemprop="url" rel="index"><span itemprop="name">白噪音</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>945</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><em>博客维护过程中的问题</em></p>
+<h1 id="图床的问题"><a href="#图床的问题" class="headerlink" title="图床的问题"></a>图床的问题</h1><ul>
+<li>发现问题很难，但是到处都有答案。就看你会不会提问，会不会在一个死胡同里被套住。就像我一直纠结在七牛云里（搜索引擎搜出来都是七牛云）。用了7牛云出现各种问题：一个月后域名回收；要网站备案，然后去买域名；买完域名发现服务器在国外不用备案。好在我太穷了，买不起服务器。再去找其他的图床。结果困扰我一周的问题，半天就解决了。果然是穷则变，变则通。感谢我一个月1200的工资。</li>
+<li>其他的图床，参考<a href="https://zhuanlan.zhihu.com/p/35270383" target="_blank" rel="noopener">盘点国内免费好用的图床</a></li>
+<li>换成了路过图床，只要注册个账号就好了。</li>
+</ul>
+<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h4 id="数学公式行内渲染除了问题（都怪我上次虎头蛇尾，自己没有解决后面的语义问题）。"><a href="#数学公式行内渲染除了问题（都怪我上次虎头蛇尾，自己没有解决后面的语义问题）。" class="headerlink" title="数学公式行内渲染除了问题（都怪我上次虎头蛇尾，自己没有解决后面的语义问题）。"></a>数学公式行内渲染除了问题（都怪我上次虎头蛇尾，自己没有解决后面的语义问题）。</h4><p>参考<a href="https://www.jianshu.com/p/7ab21c7f0674" target="_blank" rel="noopener">这个文章</a>解决问题。</p>
+<h4 id="用IE浏览器打开博客，数学公式没有渲染。"><a href="#用IE浏览器打开博客，数学公式没有渲染。" class="headerlink" title="用ＩＥ浏览器打开博客，数学公式没有渲染。"></a>用ＩＥ浏览器打开博客，数学公式没有渲染。</h4><p>换成谷歌浏览器就好了。我也不知道为什么…</p>
+<h4 id="hexo中出现出现渲染不完全。"><a href="#hexo中出现出现渲染不完全。" class="headerlink" title="hexo中出现出现渲染不完全。"></a>hexo中出现出现渲染不完全。</h4><p>我发现下面这个问题。所以把彩色字用黑字包裹起来就好了。我也不知道为什么。以后彩色字还是包起来比较好。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;font color &#x3D; red &gt;偏导数和一元函数的导数不一样，它是一个整体，不能看成微商。&lt;&#x2F;font&gt;</span><br><span class="line">#####这边渲染不完全</span><br><span class="line">&lt;font color &#x3D; red &gt;偏导数和一元函数的导数不一样，它是一个整体，不能看成微商。&lt;&#x2F;font&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="七牛云"><a href="#七牛云" class="headerlink" title="七牛云"></a>七牛云</h1><h4 id="图片引用格式要正确。文件名中不可以有空格，hexo-g-会出问题。"><a href="#图片引用格式要正确。文件名中不可以有空格，hexo-g-会出问题。" class="headerlink" title="图片引用格式要正确。文件名中不可以有空格，hexo g 会出问题。"></a>图片引用格式要正确。文件名中不可以有空格，hexo g 会出问题。</h4><ul>
+<li>设置图片的大小：<a href="https://gitee.com/k1988/hexo-qiniu-sync" target="_blank" rel="noopener">参考</a><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% qnimg test&#x2F;demo.png title:图片标题 alt:图片说明 &#39;class:class1 class2&#39; extend:?imageView2&#x2F;2&#x2F;w&#x2F;600 %&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="发现自己博客中图片都不显示了。"><a href="#发现自己博客中图片都不显示了。" class="headerlink" title="发现自己博客中图片都不显示了。"></a>发现自己博客中图片都不显示了。</h4></li>
+</ul>
+<p>一个月了，七牛云收回测试域名。没有外链域名时，无法预览、下载、复制外链。所以说我的博客瘫了。</p>
+<p>直接换了托管平台，<a href="https://blog.csdn.net/Mondobongoo/article/details/83905361?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_source=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0" target="_blank" rel="noopener">QQ空间就可以</a>。但是QQ得开通黄钻图片才可以生成外部链接。每次还得上传图片，我决定买域名了。</p>
+<ul>
+<li><p>买域名</p>
+<p>在阿里云购买域名(购买工业和信息化部可备案的域名，不然就白买了)</p>
+<p>完成<a href="https://help.aliyun.com/document_detail/61819.html?spm=5176.8208715.110.1.78c83cdaVuQJj6" target="_blank" rel="noopener">域名备案</a></p>
+</li>
+<li><p>想要在阿里云备案，还必须买它的服务器。我哪里需要买服务器啊。准备用腾讯云。阿里云是你没有留住客户，气死我了…</p>
+<font color = red>七牛云再见！！！！！</font></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>喜欢简单粗暴地支持一下！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="缪红林 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="缪红林 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>缪红林
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://m-honglin.github.io/2020/04/06/hexo%E5%8D%9A%E5%AE%A2%E7%BB%B4%E6%8A%A4%E6%97%A5%E5%BF%97/" title="hexo博客维护日志">http://m-honglin.github.io/2020/04/06/hexo博客维护日志/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa%E8%AE%BE%E7%BD%AE%E7%89%88%E6%9D%83/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA设置版权</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/hexo/" rel="tag"># hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/05/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80-%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="prev" title="数学基础-微积分">
+      <i class="fa fa-chevron-left"></i> 数学基础-微积分
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/08/vim%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" rel="next" title="vim快速入门">
+      vim快速入门 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图床的问题"><span class="nav-number">1.</span> <span class="nav-text">图床的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo"><span class="nav-number">2.</span> <span class="nav-text">hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数学公式行内渲染除了问题（都怪我上次虎头蛇尾，自己没有解决后面的语义问题）。"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">数学公式行内渲染除了问题（都怪我上次虎头蛇尾，自己没有解决后面的语义问题）。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用IE浏览器打开博客，数学公式没有渲染。"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">用ＩＥ浏览器打开博客，数学公式没有渲染。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo中出现出现渲染不完全。"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">hexo中出现出现渲染不完全。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七牛云"><span class="nav-number">3.</span> <span class="nav-text">七牛云</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图片引用格式要正确。文件名中不可以有空格，hexo-g-会出问题。"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">图片引用格式要正确。文件名中不可以有空格，hexo g 会出问题。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发现自己博客中图片都不显示了。"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">发现自己博客中图片都不显示了。</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="缪红林"
+      src="/images/my-profile.jpg">
+  <p class="site-author-name" itemprop="name">缪红林</p>
+  <div class="site-description" itemprop="description">中二病晚期</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/M-HongLin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;M-HongLin" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:21927003@zju.edu.cn" title="E-Mail → mailto:21927003@zju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">缪红林</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">55k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">50 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+<div>
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/14/2020 07:014:00");
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 ";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '2bc56a26af7713b55639',
+      clientSecret: '4c6b9850b91f9ca4a534dfecc94075cc98d07691',
+      repo        : 'blog-comment',
+      owner       : 'M-HongLin',
+      admin       : ['M-HongLin'],
+      id          : 'dc95788fb18d6b0f9d93df84d081be38',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
